@@ -27,12 +27,8 @@ jobs:
     strategy:
       matrix:
         include:
-          - build: 4107   # stable ST build
-            default_packages: v4107
-          - build: 4126   # stable ST build
-            default_packages: v4126
-          - build: 4143   # stable ST build
-            default_packages: v4143
+          - build: 4149   # first supported ST build
+            default_packages: v4149
           - build: latest # latest available ST build
             default_packages: master
     steps:

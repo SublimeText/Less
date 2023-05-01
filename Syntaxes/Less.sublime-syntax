@@ -5,7 +5,7 @@ name: Less
 scope: source.less
 version: 2
 
-extends: CSS (for Less).sublime-syntax
+extends: Packages/CSS/CSS.sublime-syntax
 
 file_extensions:
   - less
@@ -909,7 +909,7 @@ contexts:
       pop: 1
     - include: illegal-string-end
     - match: ''
-      push: scope:source.regexp.less
+      push: scope:source.regexp
       with_prototype:
         - match: (?=["\n])
           pop: 1
@@ -924,7 +924,7 @@ contexts:
       pop: 1
     - include: illegal-string-end
     - match: ''
-      push: scope:source.regexp.less
+      push: scope:source.regexp
       with_prototype:
         - match: (?=['\n])
           pop: 1
@@ -943,7 +943,7 @@ contexts:
   less-regexp-pattern-quantifiers:
     # make sure to not highlight quantifiers illegal after interpolation
     - meta_include_prototype: false
-    - include: scope:source.regexp.less#quantifiers
+    - include: scope:source.regexp#quantifiers
     - include: immediately-pop
 
   less-quoted-replacement-string:
