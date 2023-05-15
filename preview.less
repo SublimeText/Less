@@ -1,0 +1,29 @@
+@import (less, optional) "simple.css";
+@import "@{themes}/tidal-wave.less";
+
+@layer @{utili}ties, @{framework}.@{layout}, { .foo { font-family: serif } };
+
+@link-color: #428bca; // sea blue
+
+a {@link-color-hover: darken(@link-color, 10%); }
+
+.mixin(@color) {
+	color-1: @color;
+}
+
+.mixin(@color, @padding: 2) {
+	color-2: @color;
+	padding-2: @padding;
+}
+
+.mixin(@color, @padding, @margin: 2) {
+	color-3: @color;
+	padding-3: @padding;
+	margin: @margin @margin @margin @margin;
+}
+
+.some .selector div {
+	.mixin(#008000);
+
+	background: url("@{images}/white-sand.png");
+}

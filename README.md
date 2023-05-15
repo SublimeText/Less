@@ -1,22 +1,14 @@
 # Less
 
-[Less]() syntax definitions [Sublime Text].
+[Less](https://lesscss.org) syntax definitions for [Sublime Text](https://www.sublimetext.com) based on its CSS syntax.
+
+![](preview.png)
 
 Highlights `.less` (or `.css.less`) files, and provides
 
 - snippets
 - completions
 - symbols
-
-> **Note**
->
-> This version is no longer maintained.
->
-> It is shipped for backward compatibility reasons and to respect the original authors efforts.
->
-> see: https://github.com/danro/LESS-sublime
->
-> **An up-to-date working LESS syntax definition requires ST4107+.**
 
 ## Installation
 
@@ -45,9 +37,3 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 > **Warning**
 >
 > Manually installed packages are not automatically updated by Package Control.
-
-## Buy me a coffee
-
-☕️👌🏻
-
-If you enjoy this package, feel free to make a little [donation via PayPal](https://paypal.me/koenlageveen) towards the coffee that keeps this project running. It's much appreciated!
