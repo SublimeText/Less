@@ -88,7 +88,7 @@ class LessCompletions(sublime_plugin.EventListener):
             items = None
 
         if items:
-            return sublime.CompletionList(items, sublime.INHIBIT_WORD_COMPLETIONS)
+            return sublime.CompletionList(items)
         return None
 
     def complete_property_name(self, view, prefix, pt):
