@@ -2001,6 +2001,15 @@ header {
 //                       ^^ meta.number.integer.decimal.css constant.numeric.value.css
 //                         ^ punctuation.section.group.end.less
 //                          ^ punctuation.terminator.rule.css
+
+    test: not-allowed;
+//        ^^^^^^^^^^^ support.constant.property-value.css - keyword.operator
+
+    test: and-not;
+//        ^^^^^^^ support.constant.property-value.css - keyword.operator
+
+    test: or-not;
+//        ^^^^^^ support.constant.property-value.css - keyword.operator
 }
 
 .test-escape-functions {
