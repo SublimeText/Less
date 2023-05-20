@@ -37,3 +37,15 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 > **Warning**
 >
 > Manually installed packages are not automatically updated by Package Control.
+
+## Troubleshooting
+
+Less extends Sublime Text's CSS syntax definition as of ST4149.
+
+If Less syntax highlighting doesn't work and console displays syntax errors in _Less.sublime-syntax_, please make sure to remove any out-dated syntax override.
+
+Steps:
+
+1. call _Menu > Preferences > Browse Packages.._
+2. Look for _CSS_ folder
+3. Remove it or at least delete any _CSS.sublime-syntax_ in it
