@@ -982,7 +982,7 @@ contexts:
       scope: keyword.operator.merge.less
 
   less-logical-operators:
-    - match: \b(?i:and|or|not)\b
+    - match: \b(?i:and|or|not){{break}}
       scope: keyword.operator.logical.less
 
   less-variadic-operators:
