@@ -294,6 +294,7 @@ contexts:
     - match: (?=[;{}])
       pop: 1
     - include: comments
+    - include: calc-functions
     - include: var-functions
 
   url-function-arguments-list-body:
