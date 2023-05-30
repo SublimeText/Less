@@ -2,10 +2,6 @@ import re
 import sublime
 import sublime_plugin
 
-KIND_CSS_PROPERTY = (sublime.KIND_ID_KEYWORD, "p", "property")
-KIND_CSS_FUNCTION = (sublime.KIND_ID_FUNCTION, "f", "function")
-KIND_CSS_CONSTANT = (sublime.KIND_ID_VARIABLE, "c", "constant")
-
 # Prepare some common property values for when there is more than one way to
 # specify a certain value type. The color value for example can be specified
 # by `rgb()` or `hsl()` and so on. Example where `|` denotes the caret:
@@ -646,7 +642,7 @@ class CSSCompletions(sublime_plugin.EventListener):
             items = self.complete_property_name(view, prefix, pt)
 
         if items:
-            return sublime.CompletionList(items, sublime.INHIBIT_WORD_COMPLETIONS)
+            return (items, sublime.INHIBIT_WORD_COMPLETIONS)
         return None
 
     def complete_property_name(self, view, prefix, pt):
@@ -665,14 +661,7 @@ class CSSCompletions(sublime_plugin.EventListener):
                 # ommit semicolon if rule is already terminated
                 suffix = ": $0"
 
-        return (
-            sublime.CompletionItem(
-                trigger=prop,
-                completion=prop + suffix,
-                completion_format=sublime.COMPLETION_FORMAT_SNIPPET,
-                kind=KIND_CSS_PROPERTY
-            ) for prop in self.props
-        )
+        return ([prop + "\tproperty", prop + suffix] for prop in self.props)
 
     def complete_property_value(self, view, prefix, pt):
         completions = []
@@ -682,8 +671,6 @@ class CSSCompletions(sublime_plugin.EventListener):
             prop = matches.group(1)
             values = self.props.get(prop)
             if values:
-                details = "<code>{prop}</code> property-value".format(prop=prop)
-
                 if next_none_whitespace(view, pt) == ";":
                     suffix = ""
                 else:
@@ -696,18 +683,7 @@ class CSSCompletions(sublime_plugin.EventListener):
                     else:
                         desc, snippet = value
 
-                    if "(" in snippet:
-                        kind = KIND_CSS_FUNCTION
-                    else:
-                        kind = KIND_CSS_CONSTANT
-
-                    completions.append(sublime.CompletionItem(
-                        trigger=desc,
-                        completion=snippet + suffix,
-                        completion_format=sublime.COMPLETION_FORMAT_SNIPPET,
-                        kind=kind,
-                        details=details
-                    ))
+                    completions.append([desc + "\t" + prop, snippet + suffix])
 
         return completions
 
