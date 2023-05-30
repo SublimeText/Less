@@ -45,9 +45,3 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 > **Warning**
 >
 > Manually installed packages are not automatically updated by Package Control.
-
-## Buy me a coffee
-
-☕️👌🏻
-
-If you enjoy this package, feel free to make a little [donation via PayPal](https://paypal.me/koenlageveen) towards the coffee that keeps this project running. It's much appreciated!
