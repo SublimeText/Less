@@ -189,7 +189,7 @@ contexts:
     - include: less-interpolations
 
   selector-variables:
-    - meta_append: true
+    - meta_prepend: true
     - include: less-selector-parent-identifiers
 
 ###[ CSS SELECTORS / ATTRIBUTE SELECTORS ]######################################
