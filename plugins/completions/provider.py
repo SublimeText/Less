@@ -65,11 +65,14 @@ class LessCompletions(sublime_plugin.EventListener):
     @timing
     def on_query_completions(self, view, prefix, locations):
 
-        settings = sublime.load_settings('LESS.sublime-settings')
+        settings = sublime.load_settings('Less.sublime-settings')
         if settings.get('disable_default_completions'):
             return None
 
-        selector = settings.get('default_completions_selector', '')
+        selector = settings.get('default_completions_selector')
+        if not selector:
+            return None
+
         if isinstance(selector, list):
             selector = ''.join(selector)
 
