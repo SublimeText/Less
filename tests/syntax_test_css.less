@@ -83,9 +83,7 @@
 
     *.* {}
 /*  ^^^ meta.selector.css */
-/*  ^ variable.language.wildcard.asterisk.css - punctuation */
 /*   ^ entity.other.attribute-name.class.css punctuation.definition.entity.css */
-/*    ^ variable.language.wildcard.asterisk.css - punctuation */
 
     # {}
 /*^^ - meta.selector.css */
@@ -98,7 +96,6 @@
 /*  ^^^ meta.selector.css */
 /*     ^^ - meta.selector.css */
 /*  ^ entity.other.attribute-name.id.css punctuation.definition.entity.css */
-/*   ^ variable.language.wildcard.asterisk.css - punctuation */
 
     #01 {}
 /*^^ - meta.selector.css */
@@ -2124,11 +2121,9 @@
 /*                                               ^^ - meta.string - string */
 /*                                                 ^^^^^^^^^^ meta.string.css string.quoted.double.css */
 /*                                                           ^^^^ - meta.string - string */
-/*                              ^ variable.language.wildcard.asterisk.css */
 /*                                ^^ constant.character.escape.css */
 /*                                  ^ punctuation.separator.sequence.css */
 /*                                         ^ punctuation.separator.sequence.css */
-/*                                           ^ variable.language.wildcard.asterisk.css */
 /*                                               ^ punctuation.separator.sequence.css */
 /*                                                     ^ - variable.language.wildcard */
 /*                                                        ^^ constant.character.escape.css */
@@ -2136,17 +2131,14 @@
 .test-pseudo-class-tag:not(*) {}
 /*                    ^ punctuation.definition.pseudo-class.css - entity */
 /*                     ^^^ entity.other.pseudo-class.css */
-/*                         ^ variable.language.wildcard.asterisk.css */
 
 .test-pseudo-class-tag:is(*) {}
 /*                    ^ punctuation.definition.pseudo-class.css - entity */
 /*                     ^^ entity.other.pseudo-class.css */
-/*                        ^ variable.language.wildcard.asterisk.css */
 
 .test-pseudo-class-tag:where(*) {}
 /*                    ^ punctuation.definition.pseudo-class.css - entity */
 /*                     ^^^^^ entity.other.pseudo-class.css */
-/*                           ^ variable.language.wildcard.asterisk.css */
 
 .test-pseudo-elements::before {}
 /*                   ^^ punctuation.definition.pseudo-element.css - entity */
@@ -2272,12 +2264,9 @@
 .test-attribute-selectors-namespaces[n|a=""][*|a=""][|att][*|*] {}
 /*                                   ^ entity.other.namespace-prefix.css */
 /*                                    ^ punctuation.separator.namespace.css */
-/*                                           ^ variable.language.wildcard.asterisk.css */
 /*                                            ^ punctuation.separator.namespace.css */
 /*                                                   ^ punctuation.separator.namespace.css */
-/*                                                         ^ variable.language.wildcard.asterisk.css */
 /*                                                          ^ punctuation.separator.namespace.css */
-/*                                                           ^ variable.language.wildcard.asterisk.css */
 
 .test-attribute-selectors-operators[a=""][a~=""][a|=""][a^=""][a$=""][a*=""] {}
 /*                                   ^ keyword.operator.logical.css */
@@ -2318,7 +2307,6 @@
 /*                                                   ^ meta.selector.css - meta.group */
 
    *.test-universal-selector {}
-/* ^ variable.language.wildcard.asterisk.css */
 
 .test-combinators >>> a >> a > a + b ~ a || td {}
 /*                ^^^ keyword.operator.combinator.css */
@@ -3124,7 +3112,6 @@
 .test-attr-function {
     top: attr(*|c);
 /*       ^^^^ support.function.attr.css */
-/*            ^ variable.language.wildcard.asterisk.css */
 /*             ^ punctuation.separator.namespace.css */
 /*              ^ entity.other.attribute-name.css */
 
