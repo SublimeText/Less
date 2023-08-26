@@ -506,6 +506,7 @@ contexts:
         0: keyword.control.directive.css
         1: punctuation.definition.keyword.css
       push:
+        - at-import-media-query
         - at-import-body
         - at-import-options-list
 
@@ -523,6 +524,11 @@ contexts:
     - include: comma-delimiters
     - match: '{{less_import_options}}'
       scope: constant.language.import.less
+
+  at-import-media-query:
+    # Note: A dummy context to maintain backward compatibility
+    - meta_append: true
+    - include: else-pop
 
 ###[ LESS AT PLUGINS ]#########################################################
 
