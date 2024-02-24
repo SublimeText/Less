@@ -16,12 +16,12 @@ variables:
 
   ident_start: (?:{{nmstart}}|@+{)
 
-  selector_begin: (?={{selector_start}}|&|@+{)
+  property_or_selector_begin: (?={{ident_begin}}|{{selector_start}})
+
+  selector_begin: (?={{selector_start}}|@+{)  # for backward compatibility only
   selector_end: (?=[;{}])
 
   tag_name_begin: (?=[[:alpha:]]|@+{)
-
-  property_or_selector_begin: (?={{selector_start}}|[-&]|{{ident_start}})
 
   # Less variables
 
