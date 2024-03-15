@@ -122,13 +122,19 @@ contexts:
     - meta_append: true
     - include: less-line-comments
 
-##[ CSS AT RULES ]############################################################
+##[ CSS AT RULES ]#############################################################
 
   at-other:
     - meta_prepend: true
     - include: less-plugins
     - include: less-declarations
     - include: less-variable-calls
+
+###[ CSS CONTAINER QUERIES ]###################################################
+
+  container-style-queries:
+    - meta_append: true
+    - include: less-interpolations
 
 ###[ CSS MEDIA QUERIES ]#######################################################
 
@@ -151,7 +157,7 @@ contexts:
         - selector-body
 
   maybe-property:
-    - include: comments
+    - meta_include_prototype: false
     - include: property-end
     - include: property-identifiers
     # otherwise it is part of a selector
@@ -174,8 +180,6 @@ contexts:
     # property mixins or values are followed/terminated by one of ; ) }
     - match: (?=[;)}]|{{at_rules}})
       pop: 1
-
-###[ CSS SELECTORS ]############################################################
 
   selector-body:
     - meta_prepend: true
@@ -234,6 +238,7 @@ contexts:
 ###[ CSS PROPERTY LISTS ]######################################################
 
   property-list-body:
+    - meta_include_prototype: false
     - meta_scope: meta.property-list.css meta.block.css
     - include: block-end
     - include: stylesheet
