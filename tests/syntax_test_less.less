@@ -652,6 +652,54 @@ custom-@{element}-selector {}
 //          ^^^^^^^^ meta.string.css string.unquoted.css meta.interpolation.less
 //                  ^^^^^^ meta.string.css string.unquoted.css - meta.interpolation
 
+.pseudo-class-lang:lang(@{lng}-*K\*, de-@{DE}, *-@{lng}-EN, "de-*@{DE}\*") {}
+//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.selector.css
+//                 ^^^^ meta.function-call.identifier.css
+//                     ^ meta.function-call.arguments.css meta.group.css - meta.string - meta.interpolation
+//                      ^^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css meta.interpolation.less
+//                            ^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css string.unquoted.css
+//                                 ^^ meta.function-call.arguments.css meta.group.css - meta.string - meta.interpolation
+//                                   ^^^ meta.function-call.arguments.css meta.group.css meta.string.css string.unquoted.css
+//                                      ^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css meta.interpolation.less
+//                                           ^^ meta.function-call.arguments.css meta.group.css - meta.string - meta.interpolation
+//                                             ^^ meta.function-call.arguments.css meta.group.css meta.string.css string.unquoted.css
+//                                               ^^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css meta.interpolation.less
+//                                                     ^^^ meta.function-call.arguments.css meta.group.css meta.string.css string.unquoted.css
+//                                                        ^^ meta.function-call.arguments.css meta.group.css - meta.string - meta.interpolation
+//                                                          ^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css - meta.interpolation
+//                                                               ^^^^^ meta.function-call.arguments.css meta.group.css meta.string.css meta.interpolation.less
+//                                                                    ^^^ meta.function-call.arguments.css meta.group.css meta.string.css - meta.interpolation
+//                                                                       ^ meta.function-call.arguments.css meta.group.css - meta.string - meta.interpolation
+//                 ^^^^ entity.other.pseudo-class.css
+//                     ^ punctuation.section.group.begin.css
+//                      ^ punctuation.definition.variable.less
+//                       ^ punctuation.section.interpolation.begin.less
+//                        ^^^ variable.other.less
+//                           ^ punctuation.section.interpolation.end.less
+//                             ^ constant.other.wildcard.asterisk.css, variable.language.wildcard.asterisk.css
+//                               ^^ constant.character.escape.css
+//                                 ^ punctuation.separator.sequence.css
+//                                   ^^^ string.unquoted.css
+//                                      ^ punctuation.definition.variable.less
+//                                       ^ punctuation.section.interpolation.begin.less
+//                                        ^^ variable.other.less
+//                                          ^ punctuation.section.interpolation.end.less
+//                                           ^ punctuation.separator.sequence.css
+//                                             ^ constant.other.wildcard.asterisk.css, variable.language.wildcard.asterisk.css
+//                                               ^ punctuation.definition.variable.less
+//                                                ^ punctuation.section.interpolation.begin.less
+//                                                 ^^^ variable.other.less
+//                                                    ^ punctuation.section.interpolation.end.less
+//                                                        ^ punctuation.separator.sequence.css
+//                                                          ^ punctuation.definition.string.begin.css
+//                                                               ^ punctuation.definition.variable.less
+//                                                                ^ punctuation.section.interpolation.begin.less
+//                                                                 ^^ variable.other.less
+//                                                                   ^ punctuation.section.interpolation.end.less
+//                                                                    ^^ constant.character.escape.css
+//                                                                      ^ punctuation.definition.string.end.css
+//                                                                       ^ punctuation.section.group.end.css
+
 .nested-selector-interpolation-tests {
 
   @{selector} {
@@ -756,6 +804,34 @@ custom-@{element}-selector {}
 //                                             ^^^^^ variable.other.less
 //                                                   ^^^ support.constant.color.w3c.standard.css
 //                                                       ^ punctuation.section.group.end.css
+
+    font: san\73 -\73 erif;
+//        ^^^^^^^^^^^^^^^^ meta.string.css string.unquoted.css
+
+    font: sans @{serif} var(--name);
+//        ^^^^^ meta.string.css string.unquoted.css
+//             ^^^^^^^^ meta.string.css meta.interpolation.less
+//                     ^ - meta.string - meta.interpolation
+//                      ^^^^^^^^^^^ meta.function-call
+
+    image: url(@{server}/assets/@{image}.png);
+//        ^ meta.property-value.css - meta.function-call
+//         ^^^ meta.property-value.css meta.function-call.identifier.css
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.css meta.function-call.arguments.css meta.group.css
+//             ^^^^^^^^^ meta.path.url.css meta.string.css meta.interpolation.less - string
+//                      ^^^^^^^^ meta.path.url.css meta.string.css string.unquoted.css
+//                              ^^^^^^^^ meta.path.url.css meta.string.css meta.interpolation.less - string
+//                                      ^^^^ meta.path.url.css meta.string.css string.unquoted.css
+
+    grid: [@{line}name, line@{name}, li@{ne}name];
+//         ^^^^^^^ meta.string.css meta.interpolation.less - string
+//                ^^^^ meta.string.css string.unquoted.line-name.css
+//                      ^^^^ meta.string.css string.unquoted.line-name.css
+//                          ^^^^^^^ meta.string.css meta.interpolation.less - string
+//                                   ^^ meta.string.css string.unquoted.line-name.css
+//                                     ^^^^^ meta.string.css meta.interpolation.less - string
+//                                          ^^^^ meta.string.css string.unquoted.line-name.css
+
 }
 
 //=============================================================================

@@ -17,11 +17,15 @@ variables:
   ident_start: (?:{{nmstart}}|@+{)
 
   property_or_selector_begin: (?={{ident_begin}}|{{selector_start}})
+  property_end: (?=[;)}]|{{at_rules}})
 
-  selector_begin: (?={{selector_start}}|@+{)  # for backward compatibility only
+  selector_start: '[[:alpha:].:#%&*\[{{combinator_char}}]'
   selector_end: (?=[;{}])
 
   tag_name_begin: (?=[[:alpha:]]|@+{)
+
+  lang_range_begin: (?={{ident_start}}|\*)
+  unquoted_url_begin: (?={{ident_start}}|/)
 
   # Less variables
 
@@ -122,13 +126,19 @@ contexts:
     - meta_append: true
     - include: less-line-comments
 
-##[ CSS AT RULES ]############################################################
+##[ CSS AT RULES ]#############################################################
 
   at-other:
     - meta_prepend: true
     - include: less-plugins
     - include: less-declarations
     - include: less-variable-calls
+
+###[ CSS CONTAINER QUERIES ]###################################################
+
+  container-style-queries:
+    - meta_append: true
+    - include: less-interpolations
 
 ###[ CSS MEDIA QUERIES ]#######################################################
 
@@ -151,7 +161,7 @@ contexts:
         - selector-body
 
   maybe-property:
-    - include: comments
+    - meta_include_prototype: false
     - include: property-end
     - include: property-identifiers
     # otherwise it is part of a selector
@@ -172,10 +182,8 @@ contexts:
 
   property-end:
     # property mixins or values are followed/terminated by one of ; ) }
-    - match: (?=[;)}]|{{at_rules}})
+    - match: '{{property_end}}'
       pop: 1
-
-###[ CSS SELECTORS ]############################################################
 
   selector-body:
     - meta_prepend: true
@@ -234,6 +242,7 @@ contexts:
 ###[ CSS PROPERTY LISTS ]######################################################
 
   property-list-body:
+    - meta_include_prototype: false
     - meta_scope: meta.property-list.css meta.block.css
     - include: block-end
     - include: stylesheet
@@ -317,7 +326,29 @@ contexts:
 
 ###[ CSS STRING CONSTANTS ]####################################################
 
-  line-names-content:
+  font-family-names:
+    # replace CSS context to add interpolation support
+    - match: '{{ident_begin}}'
+      push: font-family-name-body
+
+  font-family-name-body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.css string.unquoted.css
+    - include: less-string-interpolations
+    # allow unquoted space separated font names
+    - match: (?!\s+{{ident_start}}){{break}}
+      pop: 1
+    # function call ahead, skip font name
+    - match: (?=\s+{{ident}}\()
+      pop: 1
+    - match: '{{unicode}}'
+
+  language-ranges:
+    # replace CSS context to add interpolation support
+    - match: '{{lang_range_begin}}'
+      push: language-range-content
+
+  line-name-content:
     - meta_prepend: true
     - include: less-string-interpolations
 
@@ -325,7 +356,10 @@ contexts:
     - meta_prepend: true
     - include: less-string-interpolations
 
+###[ CSS URL STRINGS ]#########################################################
+
   quoted-url:
+    # does not yet exist in CSS but is not unlikely
     - match: \"
       scope:
         meta.string.css string.quoted.double.css
@@ -336,6 +370,15 @@ contexts:
         meta.string.css string.quoted.single.css
         punctuation.definition.string.begin.css
       set: single-quoted-url-body
+
+  unquoted-urls:
+    # replace CSS context to add interpolation support
+    - match: '{{unquoted_url_begin}}'
+      push: unquoted-url-body
+
+  unquoted-url-body:
+    - meta_prepend: true
+    - include: less-string-interpolations
 
 ###[ CSS PROTOTYPES ]##########################################################
 
