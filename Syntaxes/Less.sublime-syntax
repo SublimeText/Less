@@ -25,6 +25,7 @@ variables:
   tag_name_begin: (?=[[:alpha:]]|@+{)
 
   lang_range_begin: (?={{ident_start}}|\*)
+  unquoted_url_begin: (?={{ident_start}}|/)
 
   # Less variables
 
@@ -354,7 +355,10 @@ contexts:
     - meta_prepend: true
     - include: less-string-interpolations
 
+###[ CSS URL STRINGS ]#########################################################
+
   quoted-url:
+    # does not yet exist in CSS but is not unlikely
     - match: \"
       scope:
         meta.string.css string.quoted.double.css
@@ -365,6 +369,15 @@ contexts:
         meta.string.css string.quoted.single.css
         punctuation.definition.string.begin.css
       set: single-quoted-url-body
+
+  unquoted-urls:
+    # replace CSS context to add interpolation support
+    - match: '{{unquoted_url_begin}}'
+      push: unquoted-url-body
+
+  unquoted-url-body:
+    - meta_prepend: true
+    - include: less-string-interpolations
 
 ###[ CSS PROTOTYPES ]##########################################################
 

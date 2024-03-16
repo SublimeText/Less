@@ -806,6 +806,15 @@ custom-@{element}-selector {}
 //             ^^^^^^^^ meta.string.css meta.interpolation.less
 //                     ^ - meta.string - meta.interpolation
 //                      ^^^^^^^^^^^ meta.function-call
+
+    image: url(@{server}/assets/@{image}.png);
+//        ^ meta.property-value.css - meta.function-call
+//         ^^^ meta.property-value.css meta.function-call.identifier.css
+//            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.css meta.function-call.arguments.css meta.group.css
+//             ^^^^^^^^^ meta.path.url.css meta.string.css meta.interpolation.less - string
+//                      ^^^^^^^^ meta.path.url.css meta.string.css string.unquoted.css
+//                              ^^^^^^^^ meta.path.url.css meta.string.css meta.interpolation.less - string
+//                                      ^^^^ meta.path.url.css meta.string.css string.unquoted.css
 }
 
 //=============================================================================
