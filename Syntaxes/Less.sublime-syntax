@@ -24,6 +24,8 @@ variables:
 
   tag_name_begin: (?=[[:alpha:]]|@+{)
 
+  lang_range_begin: (?={{ident_start}}|\*)
+
   # Less variables
 
   at_rules: |-
@@ -321,6 +323,11 @@ contexts:
     - include: less-interpolations
 
 ###[ CSS STRING CONSTANTS ]####################################################
+
+  language-ranges:
+    # replace CSS context to add interpolation support
+    - match: '{{lang_range_begin}}'
+      push: language-range-content
 
   line-names-content:
     - meta_prepend: true
