@@ -797,6 +797,15 @@ custom-@{element}-selector {}
 //                                             ^^^^^ variable.other.less
 //                                                   ^^^ support.constant.color.w3c.standard.css
 //                                                       ^ punctuation.section.group.end.css
+
+    font: san\73 -\73 erif;
+//        ^^^^^^^^^^^^^^^^ meta.string.css string.unquoted.css
+
+    font: sans @{serif} var(--name);
+//        ^^^^^ meta.string.css string.unquoted.css
+//             ^^^^^^^^ meta.string.css meta.interpolation.less
+//                     ^ - meta.string - meta.interpolation
+//                      ^^^^^^^^^^^ meta.function-call
 }
 
 //=============================================================================

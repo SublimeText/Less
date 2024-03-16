@@ -324,6 +324,23 @@ contexts:
 
 ###[ CSS STRING CONSTANTS ]####################################################
 
+  font-family-names:
+    # replace CSS context to add interpolation support
+    - match: '{{ident_begin}}'
+      push: font-family-name-body
+
+  font-family-name-body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.css string.unquoted.css
+    - include: less-string-interpolations
+    # allow unquoted space separated font names
+    - match: (?!\s+{{ident_start}}){{break}}
+      pop: 1
+    # function call ahead, skip font name
+    - match: (?=\s+{{ident}}\()
+      pop: 1
+    - match: '{{unicode}}'
+
   language-ranges:
     # replace CSS context to add interpolation support
     - match: '{{lang_range_begin}}'
