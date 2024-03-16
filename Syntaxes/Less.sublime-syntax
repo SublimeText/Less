@@ -16,12 +16,13 @@ variables:
 
   ident_start: (?:{{nmstart}}|@+{)
 
-  selector_begin: (?={{selector_start}}|&|@+{)
+  property_or_selector_begin: (?={{ident_begin}}|{{selector_start}})
+  property_end: (?=[;)}]|{{at_rules}})
+
+  selector_start: '[[:alpha:].:#%&*\[{{combinator_char}}]'
   selector_end: (?=[;{}])
 
   tag_name_begin: (?=[[:alpha:]]|@+{)
-
-  property_or_selector_begin: (?={{selector_start}}|[-&]|{{ident_start}})
 
   # Less variables
 
@@ -178,7 +179,7 @@ contexts:
 
   property-end:
     # property mixins or values are followed/terminated by one of ; ) }
-    - match: (?=[;)}]|{{at_rules}})
+    - match: '{{property_end}}'
       pop: 1
 
   selector-body:
