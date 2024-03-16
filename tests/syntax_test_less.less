@@ -815,6 +815,16 @@ custom-@{element}-selector {}
 //                      ^^^^^^^^ meta.path.url.css meta.string.css string.unquoted.css
 //                              ^^^^^^^^ meta.path.url.css meta.string.css meta.interpolation.less - string
 //                                      ^^^^ meta.path.url.css meta.string.css string.unquoted.css
+
+    grid: [@{line}name, line@{name}, li@{ne}name];
+//         ^^^^^^^ meta.string.css meta.interpolation.less - string
+//                ^^^^ meta.string.css string.unquoted.line-name.css
+//                      ^^^^ meta.string.css string.unquoted.line-name.css
+//                          ^^^^^^^ meta.string.css meta.interpolation.less - string
+//                                   ^^ meta.string.css string.unquoted.line-name.css
+//                                     ^^^^^ meta.string.css meta.interpolation.less - string
+//                                          ^^^^ meta.string.css string.unquoted.line-name.css
+
 }
 
 //=============================================================================

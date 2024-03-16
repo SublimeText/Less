@@ -347,7 +347,7 @@ contexts:
     - match: '{{lang_range_begin}}'
       push: language-range-content
 
-  line-names-content:
+  line-name-content:
     - meta_prepend: true
     - include: less-string-interpolations
 
