@@ -42,9 +42,9 @@ The easiest way to install is using [Package Control](https://packagecontrol.io)
 
 Less extends Sublime Text's CSS syntax definition as of ST4149.
 
-If Less syntax highlighting doesn't work and console displays syntax errors, 
+If Less syntax highlighting doesn't work and console displays syntax errors,
 
-1. check if CSS package enabled.
+1. check if CSS package is enabled.
 2. remove any out-dated syntax override.
    
 ### Enable CSS package
